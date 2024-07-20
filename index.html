@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Demon Generator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* BASIC */
+html{
+scroll-behavior:smooth;
+}
+body{
+box-sizing:border-box;
+margin:0;
+padding:0;
+background:#111111;
+font-family:'Poppins', sans-serif;
+text-align:left;
+user-select:none;
+text-size-adjust:none;
+-webkit-tap-highlight-color:transparent !important;
+}
+p{
+font-weight:400;
+}
+b{
+font-weight:600;
+}
+a{
+text-decoration:none;
+}
+::selection{
+color:#ffffff;
+background:#000000;
+}
+::-webkit-scrollbar{
+width:5px;
+background:#ffffff;
+outline:none;
+border:none;
+}
+::-webkit-scrollbar-track{
+background:#ffffff;
+}
+::-webkit-scrollbar-thumb{
+width:5px;
+border-radius:2px;
+background:#333333;
+}
+.wrapper{
+box-sizing:border-box;
+background:#111111;
+padding:40px;
+margin:0;
+height:100vh;
+text-align:center;
+}
+.wrapper h2{
+font-size:25px;
+font-weight:700;
+color:#FF0000;
+padding:0;
+margin:10px;
+}
+.form{
+box-sizing:border-box;
+background:#111111;
+padding:10px;
+margin:0 0 20px 0;
+border-radius:10px;
+}
+.inputdata{
+box-sizing:border-box;
+background:#111111;
+text-align:left;
+padding:0;
+margin:0;
+}
+.inputdata input{
+box-sizing:border-box;
+display:inline-block;
+background:#ffffff;
+font-family:'Poppins',sans-serif;
+color:#444444;
+caret-color:#222222;
+font-size:18px;
+padding:10px;
+margin:0 0 20px 0;
+width:100%;
+outline:none;
+border:2px solid #222222;
+border-radius:10px;
+}
+.inputdata button{
+box-sizing:border-box;
+display:inline-block;
+background:#FF0000;
+font-family:'Poppins',sans-serif;
+margin:0;
+padding:10px 20px;
+color:#111111;
+font-size:18px;
+font-weight:500;
+border-radius:10px;
+cursor:pointer;
+border:none;
+width:100%;
+}
+table {
+box-sizing:border-box;
+background:#111111;
+margin:0 0 20px 0;
+padding:0;
+width:100%;
+table-layout:fixed;
+overflow:hidden;
+border-collapse:collapse;
+border-spacing:0;
+}
+td {
+box-sizing:border-box;
+color:#ffffff;
+font-size:18px;
+font-weight:400;
+padding:10px;
+margin:0;
+text-align:left;
+border-bottom:1px solid #222222;
+}
+.announcement{
+box-sizing:border-box;
+background:#333333;
+padding:10px;
+margin:10px;
+border-radius:10px;
+text-align:left;
+border:1px dashed #222222;
+}
+.announcement h3{
+color:#ff0000;
+font-size:20px;
+font-weight:700;
+padding:0;
+margin:0 0 10px 0;
+}
+.announcement ul{
+box-sizing:border-box;
+margin:0;
+padding:0 10px 10px 10px;
+}
+.announcement li{
+box-sizing:border-box;
+width:100%;
+color:#ffffff;
+font-size:15px;
+padding:0;
+margin:0 0 10px 10px;
+}
+.announcement li:last-child{
+margin:0 0 0 10px;
+}
+.history{
+box-sizing:border-box;
+background:#333333;
+padding:10px;
+margin:10px;
+border-radius:10px;
+text-align:left;
+border:2px solid #222222;
+}
+.history h3{
+color:#ff0000;
+font-size:20px;
+font-weight:700;
+padding:0;
+margin:0 0 10px 0;
+}
+.history table{
+box-sizing:border-box;
+background:#ffffff;
+margin:0 0 20px 0;
+padding:0;
+width:100%;
+table-layout:fixed;
+overflow:hidden;
+border-collapse:collapse;
+border-spacing:0;
+}
+.history td {
+box-sizing:border-box;
+background:#333333;
+color:#ffffff;
+font-size:18px;
+font-weight:400;
+padding:10px;
+margin:0;
+text-align:left;
+border-bottom:1px solid #222222;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<h2>Jasa Cek Khodam Online</h2>
+<form class="form" id="nameForm">
+<div class="inputdata">
+<input type="text" id="nameInput" name="name" placeholder="Nama orang" required>
+<button class="submit" type="submit">CEK KHODAM</button>
+</div>
+</form>
+<table id="resultTable" style="display:none;">
+<tr>
+<td>Nama</td>
+<td id="nameCell" style="font-weight:700;"></td>
+</tr>
+<tr>
+<td>Khodam</td>
+<td id="demonCell" style="font-weight:700;"></td>
+</tr>
+</table>
+
+<div class="announcement">
+<h3>Catatan penting:</h3>
+<ul>
+<li>Follow akun tiktok <b>@hannanfatihulrozaq</b></li>
+<li>Jangan lupa tap-tap layar</li>
+<li>Menerima mawar dan sejenisnya</li>
+</ul>
+</div>
+<div class="history">
+<h3>Daftar Riwayat</h3>
+<table id="historyTable">
+<thead>
+<tr>
+<th>No.</th>
+<th>Nama</th>
+<th>Khodam</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+const demons = ["sabun cuci","jas hujan","gajah duduk","pecel lele","marimas jeruk","teh gelas","cimol","ember bocor","tahu bulat","bakwan","biawak","kerak telor","kue putu","bintang laut","nasi uduk","ikan sapusapu","kecebong","cacing pita","jamur krispi","remot ac","jus alpukat","kabel type C","kursi femboy","wastafel","stang bengkok","sayur lodeh","telur musang","telur dadar","kak gem","makaroni basah","ubur ubur","stang motor mio","mesin cuci","ceker babat","semen basah","kursi goyang","ban bocor","payung bolong","lampu neon","sapu terbang","sepatu bekas","pos ronda","kodok acumalaka","lantai kotor","bakso aci","sabun colek","gayung mandi","permen kis","batu pondasi","oli samping","Mas amba","Mas fuad","tahu bulat","mendoan","kaleng sarden","ketupat santan","marimas anggur","pop ice","upil","Ratu lebah","kacang garuda","Lumba-lumba laut jawa","pensil alis","telur dadar","kipas wadesta","tisu toilet","kampas rem","Sigit rendang","kenalpot mio","kopi basi","busi supraX","sabun sunlight","rambak asin","sempak bolong","kesing hp","laler","tahu gejrot","puntung rokok","jigong bakar","mie ayam","ampas tahu","sarung mangga","mimi peri","kabel USB"];
+
+document.getElementById("nameForm").addEventListener("submit", function(event) {
+event.preventDefault();
+const name = document.getElementById("nameInput").value;
+const randomDemon = demons[Math.floor(Math.random() * demons.length)];
+document.getElementById("nameCell").innerText = name;
+document.getElementById("demonCell").innerText = randomDemon;
+document.getElementById("resultTable").style.display = 'table';
+
+const historyTable = document.getElementById("historyTable").getElementsByTagName("tbody")[0];
+const newRow = historyTable.insertRow(0);
+const indexCell = newRow.insertCell(0);
+const nameCell = newRow.insertCell(1);
+const demonCell = newRow.insertCell(2);
+indexCell.innerText = historyTable.rows.length;
+nameCell.innerText = name;
+demonCell.innerText = randomDemon;
+
+for (let i = 0; i < historyTable.rows.length; i++) {
+historyTable.rows[i].cells[0].innerText = i + 1;
+}
+
+document.getElementById("nameInput").value = '';
+});
+</script>
+</body>
+</html>
